@@ -20,7 +20,7 @@ int32_t main(){
          else if(XOR == 0 && n%2 == 1) cout << 0 << "\n";
          else if(XOR != 0 && n%2 == 0) cout << -1 << "\n";
          else cout << XOR << "\n";
-            }
+    }
 return 0;
 }
 
