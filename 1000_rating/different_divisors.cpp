@@ -11,9 +11,12 @@ using vpll = vector<pair<long long,long long>>;
 #define f(i,n) for(int i = 0; i < (n); i++)
 #define fr(i,n) for(int i = (n-1); i >= 0; i--)
 #define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
 #define nl '\n'
 
+bool is_prime(int a){
+    for(int i = 2; i <= a/i ; i++) if(a%i == 0) return false;
+    return true;
+}
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -22,18 +25,16 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
+        int d;
+        cin >> d;
+        int ans = 1;
+        int i = ans + d;
+        while(!is_prime(i)) i++;
+        ans *= i;
+        i += d;
+        while(!is_prime(i)) i++;
+        ans *= i;
+        cout << ans << nl;
     }
 
     return 0;

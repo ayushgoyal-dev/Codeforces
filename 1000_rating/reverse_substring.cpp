@@ -18,23 +18,13 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int T;
-    cin >> T;
-
-    while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
-    }
-
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        string t = s;
+        sort(all(t));
+        if(t == s) cout << "NO" << nl;
+        else for(int i = 0 ; i < n-1 ; i++) if(s[i+1] < s[i]) {cout << "YES" << nl << i+1 << " " << i+2 << nl;break;}
     return 0;
 }

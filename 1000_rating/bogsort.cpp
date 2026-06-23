@@ -22,28 +22,12 @@ int main() {
     cin >> T;
 
     while(T--) {
-        int n,k;
-        cin >> n >> k;
+        int n;
+        cin >> n;
         vi a(n);
         f(i,n) cin >> a[i];
-        vpii b;
-        vi c;
-        f(i,n){
-        if(a[i]%k == 0) c.push_back(i);
-        else b.push_back({a[i]%k,i});
-        }
-        sort(rall(b));
-        sort(all(c));
-        n = b.size();
-        for(int i : c) cout << i + 1 << " ";
-        int back = 0;
-        int front = 0;
-        for(int i = 0 ; i < n-1 ; i++){
-            if(b[i+1].first == b[i].first) front++;
-            else {reverse(b.begin()+back,b.begin()+front+1);back = i+1;front = i+1;}
-        }
-        reverse(b.begin()+back,b.begin()+front+1);
-        f(i,n) cout << b[i].second +1 << " ";
+        sort(rall(a));
+        for(int i : a) cout << i << " ";
         cout << nl;
 
     }

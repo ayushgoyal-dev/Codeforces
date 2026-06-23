@@ -11,7 +11,6 @@ using vpll = vector<pair<long long,long long>>;
 #define f(i,n) for(int i = 0; i < (n); i++)
 #define fr(i,n) for(int i = (n-1); i >= 0; i--)
 #define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
 #define nl '\n'
 
 int main() {
@@ -22,18 +21,21 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
+        int a,b;
+        cin >> a >> b;
+        int count = a;
+        int XOR;
+
+        // calculating XOR of first a-1 elements
+        if(a==0) XOR = 0;
+        else if((a-1)%4 == 0) XOR = (a-1);
+        else if((a-1)%4 == 1) XOR = 1;
+        else if((a-1)%4 == 2) XOR = a;
+        else if((a-1)%4 == 3) XOR = 0;
+        // checking the needed amount of extra elements
+        if (XOR == b) cout << count << nl;
+        else if((XOR^b) == a) cout << count +2 << nl;
+        else cout << count +1 << nl;
     }
 
     return 0;

@@ -22,18 +22,22 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
+        int n,m;
+        cin >> n >> m;
+        int sum = 0;
+        int negative = 0;
+        int mini = INT_MAX;
+        while(n--){
+            vi a(m);
+            f(i,m){
+                cin >> a[i];
+                if(a[i] < 0) negative++;
+                mini = min(mini,abs(a[i]));
+                sum += abs(a[i]);
+            }
         }
-        cout << count << nl;
+        if((negative %2) == 1) sum -= 2*mini; 
+        cout << sum << nl;
     }
 
     return 0;

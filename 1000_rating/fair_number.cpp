@@ -14,6 +14,17 @@ using vpll = vector<pair<long long,long long>>;
 #define rall(x) (x).rbegin(), (x).rend()
 #define nl '\n'
 
+bool fair(ll n){
+ll temp = n;
+while(temp > 0){
+    int digit = temp%10;
+    temp = temp/10;
+    if(digit == 0) continue;
+    if((n%digit) != 0) return false;
+}
+return true;
+}
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -22,18 +33,10 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
+        ll n;
+        cin >> n;
+        while(!fair(n)) n++;
+        cout << n << nl;
     }
 
     return 0;

@@ -22,18 +22,25 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
+    ll a,b;
+    cin >> a >> b;
+    int count = 0;
+    while(b>a){
+        if(a <= b/8LL) a *= 8LL;
+        else if( a <= b/4LL ) a *= 4LL;
+        else a *= 2LL; 
+        count++;
+    }
+    if(b ==a) {cout << count << nl;continue;}
+    while(a > b){
+        if(a%8LL == 0 && a/8LL >= b) a /= 8LL;
+        else if(a%4LL == 0LL && a/4LL >= b) a/= 4LL;
+        else if(a%2LL == 0LL) a /=2LL;
+        else break;
+        count++;
+    }
+    if(b ==a) {cout << count << nl;continue;}
+    cout << -1 << nl;
     }
 
     return 0;

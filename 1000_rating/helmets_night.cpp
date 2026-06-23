@@ -6,10 +6,12 @@ using vi = vector<int>;
 using vll = vector<long long>;
 using pii = pair<int, int>;
 using vpii = vector<pair<int, int>>;
+using vpll = vector<pair<long long, long long>>;
 
 #define f(i, n) for (int i = 0; i < (n); i++)
 #define fr(i, n) for (int i = (n - 1); i >= 0; i--)
 #define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
 #define nl '\n'
 
 int main()
@@ -17,61 +19,34 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t;
-    cin >> t;
+    int T;
+    cin >> T;
 
-    while (t--)
+    while (T--)
     {
-        int n, p;
+        ll n, p;
         cin >> n >> p;
-        vi a(n);
+        vll a(n), b(n);
         f(i, n) cin >> a[i];
-        vi b(n);
         f(i, n) cin >> b[i];
-        // vector to store b[i] and a[i]
-        vpii v;
+        vpll v;
         f(i, n) v.push_back({b[i], a[i]});
-        // setting the priority order
         sort(all(v));
-        // reversing the elements with same first element 
-        int low = 0;
-        int high = 0;
-        f(i, n)
+        ll count = 0LL;
+        ll cost = 0LL;
+        for (auto it : v)
         {
-            if (v[low].first == v[i].first)
-                high = i;
-            else
+            if (it.first < p)
             {
-                reverse(v.begin() + low, v.begin() + high + 1);
-                low = i;
-                high = i;
+                cost += it.first * min(it.second, n - 1 - count);
+                count = min(count + it.second, n - 1);
             }
+            else
+                break;
+            if (count == n-1)
+                break;
         }
-        reverse(v.begin() + low, v.begin() + high + 1);
-        // caluculating cost
-        int residents = v[0].second;
-        int helmet = v[0].first*min(v[0].second,n-1);
-        int i = 1;
-        
-        // while (v[i].first <= p && residents < n)
-        // {
-        //     if (v[i].second <= n - residents - 1)
-        //     {
-        //         residents += v[i].second + 1;
-        //         helmet += v[i].second * v[i].first + p;
-        //     }
-        //     else
-        //     {
-        //         helmet += v[i].first * (n - residents - 1) + p;
-        //         residents = n;
-        //     }
-        //     i++;
-        // }
-        while(v[i].first <= p && residents < n){
-           
-        }
-        
-        cout << helmet+p << nl;
+        cout << cost + ((n - count ) * p) << nl;
     }
 
     return 0;

@@ -24,27 +24,19 @@ int main()
 
     while (T--)
     {
-        int n, x;
-        cin >> n >> x;
-        vi a(n);
-        f(i, n) cin >> a[i];
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
         int count = 0;
-        pii old = {a[0] - x, a[0] + x};
-        pii curr;
-        for (int i = 1; i < n; i++)
-        {
-            curr = {a[i] - x, a[i] + x};
-            if (max(old.first, curr.first) <= min(old.second, curr.second))
-            {
-                old.first = max(old.first, curr.first);
-                old.second = min(old.second, curr.second);
-            }
-            else
-            {
-                old = curr, count++;
-            }
+        int moves = 0;
+        for(char c : s){
+            if(c == '(') count++;
+            else count--;
+            if(count < 0) {count++;moves++;}
         }
-        cout << count << nl;
+        cout << moves << nl;
     }
+
     return 0;
 }

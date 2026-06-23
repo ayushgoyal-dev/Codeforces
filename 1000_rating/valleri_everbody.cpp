@@ -22,18 +22,14 @@ int main() {
     cin >> T;
 
     while(T--) {
-        ll n,k,q;
-        cin >> n >> k >> q;
-        vll a(n);
-        f(i,n) cin >> a[i];
-        ll low = 0;
-        while( low < n && a[low] >q ) low++;
-        ll count =0;
-        for(ll high = low; high < n ; high++){
-        if(a[high] > q ) low = high +1;
-        else if(high-low + 1 >= k) count += high-low+1LL-k+1LL;
-        }
-        cout << count << nl;
+        int n;
+        cin >> n ;
+        vll b(n);
+        f(i,n) cin >> b[i];
+        set <ll> s;
+        f(i,n) s.insert(b[i]);
+        if(s.size() < n) cout << "YES" << nl;
+        else cout << "NO" << nl;
     }
 
     return 0;
