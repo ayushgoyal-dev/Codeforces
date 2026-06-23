@@ -6,12 +6,13 @@ This repository contains my solutions to Codeforces problems and contest submiss
 
 - 800 Rating
 - 900 Rating
-- 1000 Rating (upcoming)
+- 1000 Rating
+- 1100 Rating
 
 ## Current Profile
 
 - Handle: ayushgoyal-dev
-- Current Rating: 967
+- Current Rating: 1033
 
 ## Goals
 
